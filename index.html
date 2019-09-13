@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>내가 지금 이걸 사면 남는 건 얼마야?</title>
+</head>
+<style>
+	.hole{width:800px; display:block; margin:auto; font-family: 'Eoe_Zno_B'; font-size:20px}
+	header{padding-top:130px; font-size:40px; padding-bottom:50px; font-family: 'Black Han Sans', sans-serif;}
+	@font-face { font-family: 'Eoe_Zno_B'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_B.woff') format('woff'); font-weight: normal; font-style: normal; }
+	#monitor{padding-top:50px; padding-bottom:10px; font-size:20px; font-family: 'Eoe_Zno_B';}
+	#monitor2{padding-bottom:10px; font-size:20px; font-family: 'Eoe_Zno_B';}
+	#myname{background:#ddd; font-size:18px; box-shadow: 0px 0px 3px inset; border:none; font-family: 'Eoe_Zno_B'; width:250px; border-radius: 5px; padding: 6px;}
+	#nowmoney{background:#ddd; font-size:18px; box-shadow: 0px 0px 3px inset; border:none; font-family: 'Eoe_Zno_B'; padding-bottom: :5px; width:250px; border-radius: 5px; padding: 6px;}
+	#buything{background:#ddd; font-size:18px; box-shadow: 0px 0px 3px inset; border:none; font-family: 'Eoe_Zno_B'; padding-bottom: :5px; width:250px; border-radius: 5px; padding: 6px;}
+	#minmoney{background:#ddd; font-size:18px; box-shadow: 0px 0px 3px inset; border:none; font-family: 'Eoe_Zno_B'; padding-bottom: :5px; width:250px; border-radius: 5px; padding: 6px;}
+	#todate{background:#ddd; font-size:18px; box-shadow: 0px 0px 3px inset; border:none; font-family: 'Eoe_Zno_B'; padding-bottom: :5px; width:250px; border-radius: 5px; padding: 6px;}
+
+</style>
+<body>
+	<div class="hole">
+	<header>내가 지금 이걸 사면 앞으로 얼마나 쓸 수 있지?</header>
+	<input type="text" placeholder="이름" id="myname">
+	<br><br><br>
+
+	<input type="text" placeholder="현재 있는 돈" id="nowmoney">원
+	<br><br>
+	<input type="text" placeholder="사고 싶은 물건 값" id="buything">원
+	<br><br>
+	<input type="text" placeholder="하루에 필요한 최소 금액" id="minmoney">원
+	<br><br>
+	<input type="text" placeholder="용돈, 월급 들어오기까지" id="todate">일
+
+	<div id="monitor">지금 그 물건을 산다면 남는 금액은 0원입니다.</div>
+	<div id="monitor2">남은 금액으로 0일동안 0원씩 계속 사용하게 된다면, 생활비가 0원이 남습니다.</div>
+
+	<script type="text/javascript">
+		nowmoney.oninput= function(){
+			var remainmoney = (nowmoney.value-buything.value);
+			var lifemoney = Math.round(remainmoney - todate.value*minmoney.value);
+			monitor.innerHTML = myname.value + "님, 지금 그 물건을 산다면 남는 금액은" + remainmoney + "원입니다."
+		}
+		buything.oninput= function(){
+			var remainmoney = (nowmoney.value-buything.value);
+			var lifemoney = Math.round(remainmoney - todate.value*minmoney.value);
+			monitor.innerHTML = myname.value + "님, 지금 그 물건을 산다면 남는 금액은" + remainmoney + "원입니다."
+		}
+		todate.oninput= function(){
+			var remainmoney = (nowmoney.value - buything.value);
+			var lifemoney = Math.round(remainmoney - todate.value*minmoney.value);
+			monitor2.innerHTML = "남은 금액으로" + todate.value + "일동안" + minmoney.value +"원씩 계속 사용하게 된다면, 생활비가" + lifemoney + "원이 남습니다."
+		}
+		minmoney.oninput= function(){
+			var remainmoney = (nowmoney.value - buything.value);
+			var lifemoney = Math.round(remainmoney - todate.value*minmoney.value);
+			monitor2.innerHTML = "남은 금액으로" + todate.value + "일동안" + minmoney.value +"원씩 계속 사용하게 된다면, 생활비가" + lifemoney + "원이 남습니다."
+		}
+	</script>
+	</div>
+</body>
+</html>
